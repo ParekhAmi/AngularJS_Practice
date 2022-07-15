@@ -1,0 +1,221 @@
+<!-- Body Start -->
+
+<!-- --------------------------------------------Header Component---------------------------------- -->
+<app-header></app-header>
+
+<!-- ----------------------------------Title------------------------------------- -->
+<h1 style="text-align: center; background-color: #f5d882; border: 5px solid #FFC000; margin-top: 30px;">{{title}}</h1>
+<h1>Practice Angular and earn Cad $74K</h1>
+
+<!-- ---------------------------------------------------------- Property use ---------------------------------------- -->
+
+<h3 style="margin: auto;">---------------------------------------------Intetrpolation & Property
+  binding-------------------------------------------</h3>
+<!-- Interpolation -->
+<img class="img" src={{imgSrc}} alt="Interpolation" />
+<!-- Property Binding -->
+<img class="img" [src]="imgSrc" alt="Property Binding" />
+
+<!------------------- Get textbox value & MouseEvents(click, keyup & keydown with enter,space, blur, mouseover, mouseleave)-------------->
+<h3 style="margin: auto;">--------------------------------------------------Get Textbox value & Mouse
+  events-----------------------------------------</h3>
+<div>
+  <input type="text" id="txtValue" #txtValue />&nbsp;
+  <button (click)="print(txtValue.value)">Print</button><br><br>
+  <input type="textbox" value={{txtValue.value}} />
+  <h2>{{currentVal}}</h2>
+</div>
+
+
+<!-- ----------------------------------------------------------If Conditions----------------------------------------------------- -->
+
+<h3 style="margin: auto;">----------------------------------------------------------If Else
+  loop--------------------------------------------------</h3>
+<!-- Ifelse, If with string -->
+<div>
+  <p *ngIf="show=='yes'; then ifBox else elseBox"></p>
+  <ng-template #ifBox>
+    If you know then only you can Apply
+  </ng-template>
+  <ng-template #elseBox>
+    <p>else block</p>
+  </ng-template>
+</div>
+
+<!-- if with conditions  -->
+<ng-template [ngIf]="color=='red'">
+  <p style="background-color: rgb(243, 152, 152);height: fit-content; width: fit-content; border: 2px solid red;">
+    Red Block
+  </p>
+</ng-template>
+
+<ng-template [ngIf]="color=='green'">
+  <p style="background-color: rgb(152, 248, 152); height: fit-content; width: fit-content; border: 2px solid green;">
+    Green Block
+  </p>
+</ng-template>
+
+<!-- Conditions with property binding -->
+<h3 style="margin: auto;">--------------------------------------------Conditions with property
+  binding--------------------------------------------</h3>
+
+<input type="text" [disabled]="disabledBox" [value]="name" /><br><br>
+<!--Box is enabled only in property binding, enable Box do not work with Interpolation -->
+<input type="text" disabled={{disabledBox}} value={{name}} /><br><br>
+<button type="button" (click)="enabledBox()">Enable Box</button>
+
+<!---------------------------------------------------------- Switch Case--------------------------------------------------- -->
+<h3 style="margin: auto;">-------------------------------------------------------Switch
+  case------------------------------------------------</h3>
+<div [ngSwitch]="color">
+  <h2 *ngSwitchCase="'red'" style="color: red;">Red Color</h2>
+
+  <h2 *ngSwitchCase="'green'" style="color: green;">Green Color</h2>
+
+  <h2 *ngSwitchCase="'blue'" style="color: blue;">Blue Color</h2>
+</div>
+
+<!-- ------------------------------------------------------ For Loop ------------------------------------------------------ -->
+<h3 style="margin: auto;">---------------------------------------------------------------For
+  loop-------------------------------------------------</h3>
+<!-- ----------Array------------ -->
+<div *ngFor="let item of Data">
+  {{item}}
+</div>
+
+<!-- ---------Array of objects---- -->
+<table border="2" align="center">
+  <tr style="font-weight: bold;">
+    <td>Name</td>
+    <td>Age</td>
+  </tr>
+  <tr *ngFor="let item of DataObj">
+    <td>{{item.name}}</td>
+    <td>{{item.age}}</td>
+  </tr>
+</table>
+
+<!-- ----------------------------------------------- Forms Module----------------------------------- -->
+<h3 style="margin: auto;">
+  -------------------------------------------------------------Form------------------------------------------------------
+</h3>
+<form #simpleForm="ngForm" (ngSubmit)="getUserValue(simpleForm.value)">
+
+  <label>First Name</label>&nbsp;
+  <input type="text" ngModel name="firstName" placeholder="Enter your Firstname" /><br><br>
+
+  <label>Last Name</label>&nbsp;
+  <input type="text" ngModel name="lastName" placeholder="Enter your Lastname" /><br><br>
+
+  <label>Email</label>&nbsp;
+  <input type="email" ngModel name="email" placeholder="Enter your email id" /><br><br>
+
+  <label>Password</label>&nbsp;
+  <input type="password" ngModel name="password" placeholder="Enter your password" /><br><br>
+
+  <button>Get User Value</button>
+</form>
+
+<!-- ------------------------------Style Binding------------------------------- -->
+
+<div>
+  <h3 style="margin: auto;">----------------------------------Style Binding------------------------------------</h3>
+  <h1 style="color: green;">Normal Style</h1>
+  <h1 [style.color]="'red'">Style Binding</h1>
+  <h1 [style.color]="styleColor">Dynamic Style</h1>
+  <h1 [style.color]="err ? 'blue' : 'yellow'">Conditional Style</h1>
+
+  <button (click)="updateColor()">Update Color</button>
+</div>
+
+<!-- ---------------------------------------- Material UI Button -------------------------------- -->
+<h3 style="margin: auto;">----------------------------------------- Material UI
+  -----------------------------------------</h3>
+<div>
+  <button mat-button color="primary">Angular</button>
+  <button mat-raised-button color="warn">Warn</button>
+
+  <mat-slider min="1" max="100"></mat-slider>
+</div>
+
+<h3>----------------------------------Child Component User----------------------------</h3>
+<h5>----------------------------------Data send from parent to child------------------</h5>
+<div *ngFor="let oneData of parentData">
+  <app-user [FamilyName]="oneData"></app-user>
+</div>
+
+<h5>----------------------------------Data send from child to parent------------------</h5>
+<div>
+  <app-user (parentFunctionEvent)="parentComponent($event)"></app-user>
+  <p>{{data}}</p>
+</div>
+
+<h3>----------------------------------- Pipe -----------------------------------------</h3>
+<div>
+  <h5>----------Pipe with String-----------</h5>
+  <p>{{pipeString | titlecase}}</p>
+  <p>{{pipeString | uppercase}}</p>
+  <p>{{pipeString | lowercase}}</p>
+
+  <h5>----------Pipe with Date-----------</h5>
+  <p>{{pipeDate | date}}</p>
+  <p>{{pipeDate | date: 'fullDate'}}</p>
+
+  <h5>----------Pipe with Slice-----------</h5>
+  <p>{{pipeSlice | slice: 4:9}}</p>
+
+  <p>{{pipeCurrency | currency: 'GBP'}}</p>
+</div>
+
+<h3>--------------------------------------------Routing----------------------------------------</h3>
+<div>
+  <a routerLink="user">User</a>
+  <br><br>
+  <a routerLink="about">About</a>
+  <br><br>
+  <a routerLink="contact">Contact Us</a>
+</div>
+
+<h3>--------------------------------------Custom style directive------------------------------</h3>
+<div>
+  <h2>Normal Heading</h2>
+  <h2 appCustomStyle>Custom Heading</h2>
+</div>
+
+<h3>--------------------------------------User service------------------------------</h3>
+<div>
+  <h2>{{fullname}}</h2>
+</div>
+
+<h3>-------------------------Service Used for getting API data----------------------</h3>
+<div>
+  <table border="1" align="center">
+    <thead>
+      <tr>
+        <th>userId</th>
+        <th>id</th>
+        <th>title</th>
+        <th>completed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of apiData">
+        <td>{{item.userId}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.completed}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>------------------------------Admin Module Routing--------------------------------------</h3>
+<div>
+ <a routerLink="signup">Sign Up</a>
+    <br>
+ <a routerLink="login">Login</a>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- -----------------------------------------Footer Component----------------------------- -->
+<app-footer></app-footer>
