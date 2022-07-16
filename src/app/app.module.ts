@@ -9,12 +9,12 @@ import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
-import { UserComponent } from './userChild/user.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { CustomStyleDirective } from './custom-style.directive';
+import { UserComponent } from './shared/components/userChild/user.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { CustomStyleDirective } from './shared/directives/custom-style/custom-style.directive';
 import {HttpClientModule} from '@angular/common/http';
-import {AdminModule} from './admin/admin.module';
-import { GuestModule } from './guest/guest.module';
+import {AdminModule} from '../app/modules/admin/admin.module';
+import { GuestModule } from '../app/modules/guest/guest.module';
 
 @NgModule({
   declarations: [

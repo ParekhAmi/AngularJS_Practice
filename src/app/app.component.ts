@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDataService } from './user-data.service';
-import { DummyApiService } from './dummy-api.service';
-import { DataApi } from './apiData';
+import { UserDataService } from '../app/core/services/user-data/user-data.service';
+import { DummyApiService } from '../app/core/services/dummy-api/dummy-api.service';
+import { DataApi } from './shared/models/apiData';
 
 @Component({
   selector: 'app-root',

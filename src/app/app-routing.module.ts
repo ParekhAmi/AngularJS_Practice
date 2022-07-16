@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from './userChild/user.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserComponent } from './shared/components/userChild/user.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
