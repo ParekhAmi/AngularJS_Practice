@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CustomStyleDirective } from './custom-style.directive';
 import {HttpClientModule} from '@angular/common/http';
 import {AdminModule} from './admin/admin.module';
+import { GuestModule } from './guest/guest.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {AdminModule} from './admin/admin.module';
     MatSliderModule,
     HttpClientModule,
     AdminModule,
-    AppRoutingModule,
+    GuestModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
