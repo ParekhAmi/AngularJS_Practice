@@ -9,6 +9,14 @@ const routes: Routes = [
     component: UserComponent,
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./modules/admin/admin.module').then(mod => mod.AdminModule)
+  },
+  {
+    path: 'guest',
+    loadChildren: () => import('./modules/guest/guest.module').then(mod => mod.GuestModule)
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

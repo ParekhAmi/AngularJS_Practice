@@ -32,8 +32,6 @@ import { GuestModule } from '../app/modules/guest/guest.module';
     MatButtonModule,
     MatSliderModule,
     HttpClientModule,
-    AdminModule,
-    GuestModule,
     AppRoutingModule
   ],
   providers: [],
