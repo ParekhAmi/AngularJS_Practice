@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { UserDataService } from '../app/core/services/user-data/user-data.service';
 import { DummyApiService } from '../app/core/services/dummy-api/dummy-api.service';
 import { DataApi } from './shared/models/apiData';
@@ -79,10 +79,11 @@ export class AppComponent {
   pipeSlice = "hello ami"
   pipeCurrency = 10
 
-  // Service used for getting data
+  // Service used for getting data  // Lazy Load components LazyloadAdmin & LazyloadUser
+
   fullname = '';
   apiData: DataApi[] = [];
-  constructor(private user: UserDataService, private dummy: DummyApiService) {
+  constructor(private user: UserDataService, private dummy: DummyApiService, private viewContainer: ViewContainerRef, private cfr: ComponentFactoryResolver) {
 
     console.log(this.user.getData());
     let data = this.user.getData();
@@ -93,6 +94,24 @@ export class AppComponent {
       console.log('Api data', apidata);
       this.apiData = apidata;
     })
+  }
+
+  // Lazy Load components LazyloadAdmin & LazyloadUser
+
+  async lazyloadAdmin() {
+    this.viewContainer.clear();
+
+    const { LazyloadadminComponent } = await import('./shared/components/lazyloadadmin/lazyloadadmin.component');
+    this.viewContainer.createComponent(this.cfr.resolveComponentFactory(LazyloadadminComponent)
+    )
+  }
+
+  async lazyloadUser() {
+    this.viewContainer.clear();
+
+    const { LazyloaduserComponent } = await import('./shared/components/lazyloaduser/lazyloaduser.component');
+    this.viewContainer.createComponent(this.cfr.resolveComponentFactory(LazyloaduserComponent)
+    )
   }
 
 } 

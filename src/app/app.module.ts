@@ -15,6 +15,8 @@ import { CustomStyleDirective } from './shared/directives/custom-style/custom-st
 import {HttpClientModule} from '@angular/common/http';
 import {AdminModule} from '../app/modules/admin/admin.module';
 import { GuestModule } from '../app/modules/guest/guest.module';
+import { LazyloadadminComponent } from './shared/components/lazyloadadmin/lazyloadadmin.component';
+import { LazyloaduserComponent } from './shared/components/lazyloaduser/lazyloaduser.component';
 
 @NgModule({
   declarations: [
