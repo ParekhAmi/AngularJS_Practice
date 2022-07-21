@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,10 +13,6 @@ import { UserComponent } from './shared/components/userChild/user.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { CustomStyleDirective } from './shared/directives/custom-style/custom-style.directive';
 import {HttpClientModule} from '@angular/common/http';
-import {AdminModule} from '../app/modules/admin/admin.module';
-import { GuestModule } from '../app/modules/guest/guest.module';
-import { LazyloadadminComponent } from './shared/components/lazyloadadmin/lazyloadadmin.component';
-import { LazyloaduserComponent } from './shared/components/lazyloaduser/lazyloaduser.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +30,8 @@ import { LazyloaduserComponent } from './shared/components/lazyloaduser/lazyload
     MatButtonModule,
     MatSliderModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,16 +9,14 @@
 
 <!-- ---------------------------------------------------------- Property use ---------------------------------------- -->
 
-<h3 style="margin: auto;">---------------------------------------------Intetrpolation & Property
-  binding-------------------------------------------</h3>
+<h3 style="margin: auto;">------------------------Intetrpolation & Property binding-----------------------</h3>
 <!-- Interpolation -->
 <img class="img" src={{imgSrc}} alt="Interpolation" />
 <!-- Property Binding -->
 <img class="img" [src]="imgSrc" alt="Property Binding" />
 
 <!------------------- Get textbox value & MouseEvents(click, keyup & keydown with enter,space, blur, mouseover, mouseleave)-------------->
-<h3 style="margin: auto;">--------------------------------------------------Get Textbox value & Mouse
-  events-----------------------------------------</h3>
+<h3 style="margin: auto;">-------------------------Get Textbox value & Mouse events------------------------</h3>
 <div>
   <input type="text" id="txtValue" #txtValue />&nbsp;
   <button (click)="print(txtValue.value)">Print</button><br><br>
@@ -56,8 +54,7 @@
 </ng-template>
 
 <!-- Conditions with property binding -->
-<h3 style="margin: auto;">--------------------------------------------Conditions with property
-  binding--------------------------------------------</h3>
+<h3 style="margin: auto;">---------------------------Conditions with property binding-----------------------------</h3>
 
 <input type="text" [disabled]="disabledBox" [value]="name" /><br><br>
 <!--Box is enabled only in property binding, enable Box do not work with Interpolation -->
@@ -65,8 +62,7 @@
 <button type="button" (click)="enabledBox()">Enable Box</button>
 
 <!---------------------------------------------------------- Switch Case--------------------------------------------------- -->
-<h3 style="margin: auto;">-------------------------------------------------------Switch
-  case------------------------------------------------</h3>
+<h3 style="margin: auto;">------------------------------------------Switch case------------------------------------</h3>
 <div [ngSwitch]="color">
   <h2 *ngSwitchCase="'red'" style="color: red;">Red Color</h2>
 
@@ -76,8 +72,7 @@
 </div>
 
 <!-- ------------------------------------------------------ For Loop ------------------------------------------------------ -->
-<h3 style="margin: auto;">---------------------------------------------------------------For
-  loop-------------------------------------------------</h3>
+<h3 style="margin: auto;">------------------------------------------For loop-----------------------------------</h3>
 <!-- ----------Array------------ -->
 <div *ngFor="let item of Data">
   {{item}}
@@ -96,9 +91,7 @@
 </table>
 
 <!-- ----------------------------------------------- Forms Module----------------------------------- -->
-<h3 style="margin: auto;">
-  -------------------------------------------------------------Form------------------------------------------------------
-</h3>
+<h3 style="margin: auto;">--------------------------------------Form-------------------------------------</h3>
 <form #simpleForm="ngForm" (ngSubmit)="getUserValue(simpleForm.value)">
 
   <label>First Name</label>&nbsp;
@@ -232,5 +225,39 @@
   <button (click)="lazyloadUser()">Lazyload User</button>
 </div>
 
+<h3>-------------------------------------- Reactive & Template Driven Forms---------------------------------------</h3>
+<h5>------------------------------------Reactive Form Validation------------------------------</h5>
+<div class="col-sm-6">
+  <form [formGroup]="loginForm" (ngSubmit)="getReactiveFormValue()">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Enter Email"><br>
+      <span style="color: red;" *ngIf="email && email.invalid && email.touched">Email is invalid</span>
+    </div>
+    <br>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Enter Password"><br>
+      <span style="color: red;" *ngIf="password && password.invalid && password.touched">Password must contain 8-15
+        characters</span>
+    </div>
+
+    <br>
+    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+
+<h3>-------------------- Form with Prefilled Data------------------------</h3>
+<div>
+  <form #prefilledForm="ngForm" (ngSubmit)="savePrefilledData(prefilledForm.value)">
+    <input type="text" name="fullname" [ngModel]="prefilledData.fullname"/><br>
+    <input type="text" name="address" [ngModel]="prefilledData.address"/><br>
+    <input type="number" name="mobile" [ngModel]="prefilledData.mobile"/><br>
+    <input type="email" name="emailId" [ngModel]="prefilledData.emailId"/><br>
+
+    <button>Save</button>
+  </form>
+</div>
 <!-- -----------------------------------------Footer Component----------------------------- -->
 <app-footer></app-footer>

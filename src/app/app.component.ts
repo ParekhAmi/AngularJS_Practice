@@ -2,6 +2,8 @@ import { Component, ViewContainerRef, ComponentFactoryResolver } from '@angular/
 import { UserDataService } from '../app/core/services/user-data/user-data.service';
 import { DummyApiService } from '../app/core/services/dummy-api/dummy-api.service';
 import { DataApi } from './shared/models/apiData';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-root',
@@ -114,4 +116,30 @@ export class AppComponent {
     )
   }
 
+
+  // Reactive form validation
+
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(15)])
+  })
+
+  get email() { return this.loginForm.get('email') }
+  get password() { return this.loginForm.get('password') }
+
+  getReactiveFormValue() {
+    console.log(this.loginForm.value);
+  }
+
+  // Prefilled Form Data
+  prefilledData = {
+    fullname: 'Danish Paul',
+    address: '225 Van Horne Avanue',
+    mobile: 1234567891,
+    emailId: 'danishpaul@gmail.com'
+  }
+
+  savePrefilledData(preData: any) {
+    console.log(preData);
+  }
 } 
